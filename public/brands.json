@@ -1,33 +1,38 @@
 [
-    {
-      "id": 1,
-      "company_name": "Coca-Cola",
-      "company_image": "https://i.ibb.co/dB56t65/Coca-Cola-logo.png"
-    },
-    {
-      "id": 2,
-      "company_name": "Nestlé",
-      "company_image": "https://i.ibb.co/VtMhxKv/Nestl-logo.png"
-    },
-    {
-      "id": 3,
-      "company_name": "McDonald's",
-      "company_image": "https://i.ibb.co/Kz6twk8/mcdonalds-logo.jpg"
-    },
-    {
-      "id": 4,
-      "company_name": "Kellogg's",
-      "company_image": "https://i.ibb.co/ZgCv3HJ/Kellogg-s-logo.png"
-    },
-    {
-      "id": 5,
-      "company_name": "Starbucks",
-      "company_image": "https://i.ibb.co/C8xK70k/starbucks-logo.png"
-    },
-    {
-      "id": 6,
-      "company_name": "PepsiCo",
-      "company_image": "https://i.ibb.co/gZ3PYLz/Pepsico-logo.png"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "company_name": "Coca-Cola",
+    "company_image": "https://i.ibb.co/dB56t65/Coca-Cola-logo.png",
+    "url": "/products/coca-cola"
+  },
+  {
+    "id": 2,
+    "company_name": "Nestlé",
+    "company_image": "https://i.ibb.co/VtMhxKv/Nestl-logo.png",
+    "url": "/products/nestle"
+  },
+  {
+    "id": 3,
+    "company_name": "McDonald's",
+    "company_image": "https://i.ibb.co/Kz6twk8/mcdonalds-logo.jpg",
+    "url": "/products/mcdonalds"
+  },
+  {
+    "id": 4,
+    "company_name": "Kellogg's",
+    "company_image": "https://i.ibb.co/ZgCv3HJ/Kellogg-s-logo.png",
+    "url": "/products/kelloggs"
+  },
+  {
+    "id": 5,
+    "company_name": "Starbucks",
+    "company_image": "https://i.ibb.co/C8xK70k/starbucks-logo.png",
+    "url": "/products/starbucks"
+  },
+  {
+    "id": 6,
+    "company_name": "PepsiCo",
+    "company_image": "https://i.ibb.co/gZ3PYLz/Pepsico-logo.png",
+    "url": "/products/pepsico"
+  }
+]
