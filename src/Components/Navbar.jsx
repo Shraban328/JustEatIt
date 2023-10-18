@@ -15,7 +15,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="h-24 flex items-center bg-[#FFA45B] rounded-lg">
+    <div className="h-24 flex items-center bg-[#FFA45B] rounded-t-lg">
       <div className="navbar bg-[#FFA45B] max-w-screen-2xl mx-auto text-[#FBF6F0] ">
         <div className="navbar-start">
           <div className="dropdown">
