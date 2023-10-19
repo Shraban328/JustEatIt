@@ -7,12 +7,21 @@ const AddProduct = () => {
   const [price, setPrice] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [rating, setRating] = useState("");
+  const [image, setImage] = useState("");
   const handleAddProduct = (e) => {
     e.preventDefault();
-    console.log(name, brandName, type, price, shortDescription, rating);
+    console.log(name, brandName, type, price, shortDescription, rating, image);
+    const product = { name, brandName, type, price, shortDescription, rating };
+    fetch("http://localhost:5000/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   return (
-    <div className="max-w-screen-2xl mx-auto bg-[#FFDA77]">
+    <div className="max-w-screen-2xl mx-auto bg-[#FFDA77] h-[90vh] flex flex-col justify-center ">
       <h1 className="text-center text-4xl font-bold pt-12">Add Product</h1>
       <div className="flex justify-center p-12">
         <form
@@ -106,6 +115,7 @@ const AddProduct = () => {
               <span className="label-text">Image</span>
             </label>
             <input
+              onChange={(e) => setImage(e.target.value)}
               type="text"
               placeholder="image"
               className="input input-bordered w-full "
