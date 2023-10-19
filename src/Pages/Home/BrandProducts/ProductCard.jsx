@@ -4,10 +4,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
 const ProductCard = ({ product }) => {
-  const { image, name, brandName, type, price, shortDescription, rating } =
+  const { _id, image, name, brandName, type, price, shortDescription, rating } =
     product;
   return (
-    <Link data-aos="zoom-in" className="card card-side bg-base-100 shadow-xl">
+    <div data-aos="zoom-in" className="card card-side bg-base-100 shadow-xl">
       <figure>
         <img src={image} alt="Movie" className="w-4/6" />
       </figure>
@@ -25,11 +25,13 @@ const ProductCard = ({ product }) => {
           </p>
         </div>
         <div className="card-actions justify-end">
-          <Link className="btn bg-[#FFDA77] border-none">Details</Link>
+          <Link to={`/product/${_id}`} className="btn bg-[#FFDA77] border-none">
+            Details
+          </Link>
           <Link className="btn bg-[#FFDA77] border-none">Update</Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

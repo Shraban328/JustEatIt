@@ -9,6 +9,7 @@ import KelloggsProducts from "../Pages/Home/BrandProducts/KelloggsProducts";
 import StarBucksProducts from "../Pages/Home/BrandProducts/StarBucksProducts";
 import PepsiCoProducts from "../Pages/Home/BrandProducts/PepsiCoProducts";
 import AddProduct from "../Pages/AddProduct/AddProduct";
+import ProductDetails from "../Pages/Home/BrandProducts/ProductDetails";
 
 const Routes = createBrowserRouter([
   {
@@ -37,22 +38,31 @@ const Routes = createBrowserRouter([
       {
         path: "/products/nestle",
         element: <NestleProducts />,
+        loader: () => fetch("http://localhost:5000/products"),
       },
       {
         path: "/products/mcdonalds",
         element: <McDonaldsProducts />,
+        loader: () => fetch("http://localhost:5000/products"),
       },
       {
         path: "/products/kelloggs",
         element: <KelloggsProducts />,
+        loader: () => fetch("http://localhost:5000/products"),
       },
       {
         path: "/products/starbucks",
         element: <StarBucksProducts />,
+        loader: () => fetch("http://localhost:5000/products"),
       },
       {
         path: "/products/pepsico",
         element: <PepsiCoProducts />,
+        loader: () => fetch("http://localhost:5000/products"),
+      },
+      {
+        path: `/product/:id`,
+        element: <ProductDetails />,
       },
     ],
   },
