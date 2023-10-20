@@ -1,17 +1,29 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UseAuth from "../../../Utilities/UseAuth";
 import { updateProfile } from "firebase/auth";
 import auth from "../../../Firebase/firebase.config";
+import toast, { Toaster } from "react-hot-toast";
 const Register = () => {
+  const navigate = useNavigate();
   const { userCreate } = UseAuth();
   const [userName, setUserName] = useState("");
   const [userImage, setUserImage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const handleRegister = (e) => {
     e.preventDefault();
     console.log(userName, userImage, email, password);
+    setErrorMessage("");
+    if (password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters long");
+    } else if (!/^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])/.test(password)) {
+      setErrorMessage(
+        "Password must include a capital letter and special character"
+      );
+      return console.log("change password");
+    }
     userCreate(email, password)
       .then((userCredential) => {
         console.log(userCredential.user);
@@ -19,8 +31,14 @@ const Register = () => {
           displayName: userName,
           photoURL: userImage,
         });
+        navigate("/");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error.message);
+        if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+          setErrorMessage("Email Already In Use");
+        }
+      });
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -89,6 +107,13 @@ const Register = () => {
               </label>
             </div>
             <div>
+              {errorMessage && (
+                <>
+                  <p className="text-rose-700">{errorMessage}</p>
+                </>
+              )}
+            </div>
+            <div>
               <p>
                 Already Have an account? go to{" "}
                 <Link className="text-[#FFA45B]" to={"/login"}>
@@ -102,6 +127,7 @@ const Register = () => {
           </form>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
