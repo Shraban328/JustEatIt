@@ -10,6 +10,8 @@ import StarBucksProducts from "../Pages/Home/BrandProducts/StarBucksProducts";
 import PepsiCoProducts from "../Pages/Home/BrandProducts/PepsiCoProducts";
 import AddProduct from "../Pages/AddProduct/AddProduct";
 import ProductDetails from "../Pages/Home/BrandProducts/ProductDetails";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 const Routes = createBrowserRouter([
   {
@@ -63,6 +65,14 @@ const Routes = createBrowserRouter([
       {
         path: `/product/:id`,
         element: <ProductDetails />,
+      },
+      {
+        path: `/login`,
+        element: <Login />,
+      },
+      {
+        path: `/register`,
+        element: <Register />,
       },
     ],
   },
