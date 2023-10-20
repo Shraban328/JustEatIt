@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import UseAuth from "../../../Utilities/UseAuth";
 
 const Login = () => {
+  const { userLogin } = UseAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
+    userLogin(email, password)
+      .then((userCredential) => console.log(userCredential))
+      .catch((error) => console.error(error));
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -17,6 +22,7 @@ const Login = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
@@ -28,6 +34,7 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="password"
                 className="input input-bordered"

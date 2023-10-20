@@ -1,6 +1,20 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import UseAuth from "../../Utilities/UseAuth";
 
 const Navbar = () => {
+  const { user, userLogout } = UseAuth();
+  const { displayName, photoURL } = user;
+  const navigate = useNavigate();
+  console.log(user);
+  const handleLogout = (e) => {
+    e.preventDefault();
+    userLogout()
+      .then(() => {
+        console.log("logout successfull");
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
+  };
   const navLinks = (
     <>
       <li className="text-base">
@@ -58,9 +72,28 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          <Link to={"/login"} className="btn bg-[#FFDA77] border-none">
-            Login
-          </Link>
+          {user ? (
+            <>
+              <div className="flex items-center gap-2">
+                <h3 className="font-bold">{displayName}</h3>
+                <div className="avatar">
+                  <div className="w-10 mask mask-squircle">
+                    <img src={photoURL} />
+                  </div>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="btn bg-[#FFDA77] border-none"
+                >
+                  Logout
+                </button>
+              </div>
+            </>
+          ) : (
+            <Link to={"/login"} className="btn bg-[#FFDA77] border-none">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>

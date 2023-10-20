@@ -1,12 +1,26 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import UseAuth from "../../../Utilities/UseAuth";
+import { updateProfile } from "firebase/auth";
+import auth from "../../../Firebase/firebase.config";
 const Register = () => {
+  const { userCreate } = UseAuth();
   const [userName, setUserName] = useState("");
   const [userImage, setUserImage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleRegister = (e) => {
     e.preventDefault();
+    console.log(userName, userImage, email, password);
+    userCreate(email, password)
+      .then((userCredential) => {
+        console.log(userCredential.user);
+        updateProfile(auth.currentUser, {
+          displayName: userName,
+          photoURL: userImage,
+        });
+      })
+      .catch((error) => console.error(error));
   };
   return (
     <div className="hero min-h-screen bg-base-200">
