@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 const FeaturesCard = ({ feature }) => {
   const { image, title, description } = feature;
   return (
@@ -14,3 +15,6 @@ const FeaturesCard = ({ feature }) => {
 };
 
 export default FeaturesCard;
+FeaturesCard.propTypes = {
+  feature: PropTypes.object,
+};

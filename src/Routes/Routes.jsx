@@ -12,6 +12,8 @@ import AddProduct from "../Pages/AddProduct/AddProduct";
 import ProductDetails from "../Pages/Home/BrandProducts/ProductDetails";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import MyCart from "../Pages/MyCart/MyCart";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const Routes = createBrowserRouter([
   {
@@ -25,7 +27,11 @@ const Routes = createBrowserRouter([
       },
       {
         path: "/add-product",
-        element: <AddProduct />,
+        element: (
+          <PrivateRoute>
+            <AddProduct />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/products",
@@ -64,7 +70,11 @@ const Routes = createBrowserRouter([
       },
       {
         path: `/product/:id`,
-        element: <ProductDetails />,
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: `/login`,
@@ -73,6 +83,14 @@ const Routes = createBrowserRouter([
       {
         path: `/register`,
         element: <Register />,
+      },
+      {
+        path: `/cart`,
+        element: (
+          <PrivateRoute>
+            <MyCart />
+          </PrivateRoute>
+        ),
       },
     ],
   },
