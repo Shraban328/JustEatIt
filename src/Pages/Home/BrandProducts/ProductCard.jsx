@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
   const { _id, image, name, brandName, type, price, shortDescription, rating } =
     product;
   return (
-    <div data-aos="zoom-in" className="card card-side bg-base-100 shadow-xl">
+    <div data-aos="zoom-in" className="card md:card-side bg-base-100 shadow-xl">
       <figure>
         <img src={image} alt="Movie" className="w-4/6" />
       </figure>

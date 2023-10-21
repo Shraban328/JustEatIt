@@ -63,7 +63,7 @@ const ProductUpdate = () => {
         <form onSubmit={handleUpdate} className="w-full space-y-6 text-center">
           {/* name, brand name, type */}
 
-          <div className="flex gap-6">
+          <div className="flex flex-col md:flex-row gap-6">
             <div className="form-control w-full ">
               <label className="label">
                 <span className="label-text">Name</span>

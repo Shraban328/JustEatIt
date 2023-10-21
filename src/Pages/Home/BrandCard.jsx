@@ -6,7 +6,7 @@ const BrandCard = ({ brand }) => {
     <div>
       <Link
         to={url}
-        className="card col p-5 w-72 h-72 bg-base-100 shadow-xl rounded-full "
+        className="card col p-5 w-72 h-72 bg-base-100 shadow-xl rounded-full mx-auto "
       >
         <figure className="p-8  rounded-full flex-grow">
           <img

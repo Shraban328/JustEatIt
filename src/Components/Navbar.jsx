@@ -64,7 +64,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#FFDA77] text-black rounded-box w-52"
             >
               {navLinks}
             </ul>
@@ -75,7 +75,7 @@ const Navbar = () => {
               src={"https://i.ibb.co/vYwrtWv/website-logo-1.png"}
               alt=""
             />
-            <p className="text-3xl font-bold">JussEatIt</p>
+            <p className="text-xl md:text-3xl font-bold">JussEatIt</p>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -86,14 +86,14 @@ const Navbar = () => {
             <>
               <div className="flex items-center gap-2">
                 <h3 className="font-bold">{displayName}</h3>
-                <div className="avatar">
+                <div className="hidden md:block avatar">
                   <div className="w-10 mask mask-squircle">
                     <img src={photoURL} />
                   </div>
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="btn bg-[#FFDA77] border-none"
+                  className="btn btn-xs md:btn md:bg-[#FFDA77] bg-[#FFDA77] border-none"
                 >
                   Logout
                 </button>

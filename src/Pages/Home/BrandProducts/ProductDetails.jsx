@@ -13,8 +13,11 @@ const ProductDetails = () => {
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)
       .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }, []);
+      .then((data) => {
+        setProduct(data);
+        console.log(data);
+      });
+  }, [id]);
 
   const handleAddToCart = () => {
     const newProduct = {
@@ -40,49 +43,53 @@ const ProductDetails = () => {
   };
   return (
     <div>
-      <div className="card w-full bg-base-100 shadow-xl">
-        <figure>
-          <img src={image} alt="image" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">{name}</h2>
-          <p>
-            <span className="font-medium">Brand: </span>
-            {brandName}
-          </p>
-          <div className="w-1/2 text-justify space-y-2">
+      (
+      <div>
+        <div className="card w-full bg-base-100 shadow-xl">
+          <figure>
+            <img src={image} alt="image" />
+          </figure>
+          <div className="card-body  ">
+            <h2 className="card-title ">{name}</h2>
             <p>
-              <span className="font-medium">Type: </span>
-              {type}
+              <span className="font-medium">Brand: </span>
+              {brandName}
             </p>
-            <p>
-              <span className="font-medium">Price:</span> {price}$
-            </p>
-            <p>
-              <span className="font-medium">Description: </span>
-              {shortDescription}
-            </p>
-            <p>
-              <span className="font-medium">Rating: </span> {rating}
-            </p>
-          </div>
-          <div className="card-actions justify-end">
-            <button
-              onClick={handleAddToCart}
-              className="btn bg-[#FFDA77] border-none"
-            >
-              Add To Cart
-            </button>
-            <Link
-              to={`/product-update/${_id}`}
-              className="btn bg-[#FFDA77] border-none"
-            >
-              Update
-            </Link>
+            <div className="md:w-1/2 text-justify space-y-2 ">
+              <p>
+                <span className="font-medium">Type: </span>
+                {type}
+              </p>
+              <p>
+                <span className="font-medium">Price:</span> {price}$
+              </p>
+              <p>
+                <span className="font-medium">Description: </span>
+                {shortDescription}
+              </p>
+              <p>
+                <span className="font-medium">Rating: </span> {rating}
+              </p>
+            </div>
+            <div className="card-actions justify-end">
+              <button
+                onClick={handleAddToCart}
+                className="btn bg-[#FFDA77] border-none"
+              >
+                Add To Cart
+              </button>
+              <Link
+                to={`/product-update/${_id}`}
+                className="btn bg-[#FFDA77] border-none"
+              >
+                Update
+              </Link>
+            </div>
           </div>
         </div>
+        <Toaster />
       </div>
-      <Toaster />
+      )
     </div>
   );
 };
