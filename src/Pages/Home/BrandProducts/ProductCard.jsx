@@ -28,7 +28,12 @@ const ProductCard = ({ product }) => {
           <Link to={`/product/${_id}`} className="btn bg-[#FFDA77] border-none">
             Details
           </Link>
-          <Link className="btn bg-[#FFDA77] border-none">Update</Link>
+          <Link
+            to={`/product-update/${_id}`}
+            className="btn bg-[#FFDA77] border-none"
+          >
+            Update
+          </Link>
         </div>
       </div>
     </div>

@@ -24,9 +24,6 @@ const Navbar = () => {
       <li className="text-base">
         <NavLink to={"/cart"}>My Cart</NavLink>
       </li>
-      <li className="text-base">
-        <NavLink to={"/products"}>Products</NavLink>
-      </li>
     </>
   );
   return (

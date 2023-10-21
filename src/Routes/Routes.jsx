@@ -14,6 +14,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import MyCart from "../Pages/MyCart/MyCart";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ProductUpdate from "../Pages/ProductUpdate/ProductUpdate";
 
 const Routes = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const Routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () => fetch("http://localhost:5000/carts"),
+      },
+      {
+        path: `/product-update/:id`,
+        element: <ProductUpdate />,
       },
     ],
   },

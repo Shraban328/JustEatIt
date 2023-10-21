@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import AppDownloadLink from "./AppDownloadLink";
 import Banner from "./Banner";
 import Brands from "./Brands";
@@ -10,6 +11,7 @@ const Home = () => {
       <Brands />
       <Features />
       <AppDownloadLink />
+      <Toaster />
     </div>
   );
 };

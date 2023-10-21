@@ -7,7 +7,7 @@ const ProductDetails = () => {
   const { user } = UseAuth();
   const { email: userEmail } = user;
   const [product, setProduct] = useState("");
-  const { image, name, brandName, type, price, shortDescription, rating } =
+  const { _id, image, name, brandName, type, price, shortDescription, rating } =
     product;
   const { id } = useParams();
   useEffect(() => {
@@ -73,7 +73,12 @@ const ProductDetails = () => {
             >
               Add To Cart
             </button>
-            <Link className="btn bg-[#FFDA77] border-none">Update</Link>
+            <Link
+              to={`/product-update/${_id}`}
+              className="btn bg-[#FFDA77] border-none"
+            >
+              Update
+            </Link>
           </div>
         </div>
       </div>
