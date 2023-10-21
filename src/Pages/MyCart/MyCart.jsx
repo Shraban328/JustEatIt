@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import UseAuth from "../../../Utilities/UseAuth";
 import { useLoaderData } from "react-router-dom";
+import ProductCard from "../Home/BrandProducts/ProductCard";
 
 const MyCart = () => {
   const allProducts = useLoaderData();
-  console.log(allProducts);
   const { user } = UseAuth();
   const [userProducts, setUserProducts] = useState([]);
   useEffect(() => {
@@ -13,10 +13,11 @@ const MyCart = () => {
     );
     setUserProducts(remainingProducts);
   }, []);
-  console.log("userProducts: ", userProducts);
   return (
-    <div>
-      <h1>cart</h1>
+    <div className="max-w-screen-xl mx-auto my-32">
+      {userProducts.map((product) => (
+        <ProductCard key={product._id} product={product} />
+      ))}
     </div>
   );
 };
