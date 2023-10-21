@@ -1,7 +1,9 @@
 import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
 import UseAuth from "../../Utilities/UseAuth";
+import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ setToggle, toggle }) => {
+  const [buttonToggle, setButtonToggle] = useState(true);
   const { user, userLogout } = UseAuth();
   const { displayName, photoURL } = user;
   const navigate = useNavigate();
@@ -15,6 +17,11 @@ const Navbar = () => {
   };
   const handleGotoLogin = () => {
     navigate("/login");
+  };
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+    setButtonToggle(!buttonToggle);
   };
   const navLinks = (
     <>
@@ -82,6 +89,17 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
+          <div onClick={handleToggle} className="mr-3 hidden md:block">
+            {buttonToggle ? (
+              <>
+                <button className="btn">ON</button>
+              </>
+            ) : (
+              <>
+                <button className="btn btn-dark">OFF</button>
+              </>
+            )}
+          </div>
           {user ? (
             <>
               <div className="flex items-center gap-2">
