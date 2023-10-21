@@ -1,17 +1,43 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import UseAuth from "../../../../Utilities/UseAuth";
+import toast, { Toaster } from "react-hot-toast";
 
 const ProductDetails = () => {
+  const { user } = UseAuth();
+  const { email: userEmail } = user;
   const [product, setProduct] = useState("");
-  const { _id, image, name, brandName, type, price, shortDescription, rating } =
+  const { image, name, brandName, type, price, shortDescription, rating } =
     product;
   const { id } = useParams();
-  console.log(id);
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
+
+  const handleAddToCart = () => {
+    const newProduct = {
+      userEmail,
+      image,
+      name,
+      brandName,
+      type,
+      price,
+      shortDescription,
+      rating,
+    };
+    fetch("http://localhost:5000/carts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged === true) toast.success("Added To Cart!");
+      });
+  };
   return (
     <div>
       <div className="card w-full bg-base-100 shadow-xl">
@@ -41,11 +67,17 @@ const ProductDetails = () => {
             </p>
           </div>
           <div className="card-actions justify-end">
-            <Link className="btn bg-[#FFDA77] border-none">Add To Cart</Link>
+            <button
+              onClick={handleAddToCart}
+              className="btn bg-[#FFDA77] border-none"
+            >
+              Add To Cart
+            </button>
             <Link className="btn bg-[#FFDA77] border-none">Update</Link>
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

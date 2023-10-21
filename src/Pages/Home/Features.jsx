@@ -8,7 +8,6 @@ const Features = () => {
       .then((res) => res.json())
       .then((data) => setFeatures(data));
   }, []);
-  console.log(features);
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 max-w-screen-xl mx-auto my-32">
       {features.map((feature) => (

@@ -5,12 +5,10 @@ const Navbar = () => {
   const { user, userLogout } = UseAuth();
   const { displayName, photoURL } = user;
   const navigate = useNavigate();
-  console.log(user);
   const handleLogout = (e) => {
     e.preventDefault();
     userLogout()
       .then(() => {
-        console.log("logout successfull");
         navigate("/");
       })
       .catch((error) => console.error(error));

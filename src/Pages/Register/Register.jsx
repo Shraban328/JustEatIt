@@ -3,19 +3,33 @@ import { Link, useNavigate } from "react-router-dom";
 import UseAuth from "../../../Utilities/UseAuth";
 import { updateProfile } from "firebase/auth";
 import auth from "../../../Firebase/firebase.config";
-import toast, { Toaster } from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
 const Register = () => {
   const navigate = useNavigate();
-  const { userCreate } = UseAuth();
+  const { userCreate, googleLogin } = UseAuth();
   const [userName, setUserName] = useState("");
   const [userImage, setUserImage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  // handle google log in
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    googleLogin()
+      .then((userCredential) => {
+        console.log(userCredential);
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
+  };
+
+  // handle register
   const handleRegister = (e) => {
     e.preventDefault();
     console.log(userName, userImage, email, password);
     setErrorMessage("");
+
     if (password.length < 6) {
       setErrorMessage("Password must be at least 6 characters long");
     } else if (!/^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])/.test(password)) {
@@ -24,6 +38,7 @@ const Register = () => {
       );
       return console.log("change password");
     }
+
     userCreate(email, password)
       .then((userCredential) => {
         console.log(userCredential.user);
@@ -31,6 +46,18 @@ const Register = () => {
           displayName: userName,
           photoURL: userImage,
         });
+
+        // create user in database
+        const user = { userName, userImage, email, password };
+
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+
         navigate("/");
       })
       .catch((error) => {
@@ -125,9 +152,14 @@ const Register = () => {
               <button className="btn bg-[#FFA45B] border-none">Register</button>
             </div>
           </form>
+          <div className="card-body">
+            <h1 className="text-xl  "> or register with</h1>
+            <p onClick={handleGoogleLogin}>
+              <FcGoogle className="text-6xl hover:cursor-pointer" />
+            </p>
+          </div>
         </div>
       </div>
-      <Toaster />
     </div>
   );
 };
