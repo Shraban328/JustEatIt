@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
 import UseAuth from "../../Utilities/UseAuth";
 
 const Navbar = () => {
@@ -13,17 +13,32 @@ const Navbar = () => {
       })
       .catch((error) => console.error(error));
   };
+  const handleGotoLogin = () => {
+    navigate("/login");
+  };
   const navLinks = (
     <>
       <li className="text-base">
         <NavLink to={"/"}>Home</NavLink>
       </li>
-      <li className="text-base">
-        <NavLink to={"/add-product"}>Add Product</NavLink>
-      </li>
-      <li className="text-base">
-        <NavLink to={"/cart"}>My Cart</NavLink>
-      </li>
+      {user ? (
+        <li className="text-base">
+          <NavLink to={"/add-product"}>Add Product</NavLink>
+        </li>
+      ) : (
+        <li className="text-base">
+          <button onClick={handleGotoLogin}>Add Product</button>
+        </li>
+      )}
+      {user ? (
+        <li className="text-base">
+          <NavLink to={"/cart"}>My Cart</NavLink>
+        </li>
+      ) : (
+        <li className="text-base">
+          <button onClick={handleGotoLogin}>My Cart</button>
+        </li>
+      )}
     </>
   );
   return (

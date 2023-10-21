@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import UseAuth from "../../../../Utilities/UseAuth";
 AOS.init();
 const ProductCard = ({ product }) => {
+  const { user } = UseAuth();
   const { _id, image, name, brandName, type, price, shortDescription, rating } =
     product;
   return (
@@ -25,15 +27,26 @@ const ProductCard = ({ product }) => {
           </p>
         </div>
         <div className="card-actions justify-end">
-          <Link to={`/product/${_id}`} className="btn bg-[#FFDA77] border-none">
-            Details
-          </Link>
-          <Link
-            to={`/product-update/${_id}`}
-            className="btn bg-[#FFDA77] border-none"
-          >
-            Update
-          </Link>
+          {user ? (
+            <Link
+              to={`/product/${_id}`}
+              className="btn bg-[#FFDA77] border-none"
+            >
+              Details
+            </Link>
+          ) : (
+            <Link to={`/login`} className="btn bg-[#FFDA77] border-none">
+              Details
+            </Link>
+          )}
+          {user && (
+            <Link
+              to={`/product-update/${_id}`}
+              className="btn bg-[#FFDA77] border-none"
+            >
+              Update
+            </Link>
+          )}
         </div>
       </div>
     </div>
